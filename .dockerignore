@@ -1,0 +1,5 @@
+.git
+.idea
+vendor
+docker
+docker-compose.yml

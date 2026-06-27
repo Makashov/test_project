@@ -1,0 +1,13 @@
+{
+    "name": "test/project",
+    "description": "A plain PHP + MySQL project running on Docker",
+    "type": "project",
+    "require": {
+        "php": ">=8.2"
+    },
+    "config": {
+        "platform": {
+            "php": "8.2.0"
+        }
+    }
+}
