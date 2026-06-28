@@ -2,11 +2,28 @@
 
 namespace App\Controllers;
 
+use PDO;
+
 class ArticleController extends BaseController
 {
-
-    static function handle(array $params): string
+    public function handle(array $params): void
     {
-        return "ArticleController";
+        $id = $params['id'] ?? null;
+
+        $conn = $this->app->connect();
+
+        $stmt = $conn->prepare(
+            'SELECT id, image, title, description, content, views_count
+             FROM articles
+             WHERE id = :id'
+        );
+        $stmt->execute(['id' => $id]);
+        $article = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (! $article) {
+            return;
+        }
+
+        $this->app->render('article.tpl', ['article' => $article]);
     }
 }

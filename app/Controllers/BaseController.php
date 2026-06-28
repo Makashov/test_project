@@ -2,7 +2,16 @@
 
 namespace App\Controllers;
 
+use App\App;
+
 abstract class BaseController
 {
-    abstract static function handle(array $params): string;
+    protected App $app;
+
+    public function __construct()
+    {
+        $this->app = new App();
+    }
+
+    abstract function handle(array $params): void;
 }

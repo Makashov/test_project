@@ -6,14 +6,12 @@ load_env(__DIR__ . '/../.env');
 
 $_CONFIG = get_configs();
 
-use App\App;
 use App\Router;
 
 $db = $_CONFIG['db'];
 $conn = new PDO("mysql:host={$db['host']}:{$db['port']};dbname={$db['database']}", $db['username'], $db['password']);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$app = new App();
 $router = new Router();
 
 echo $router->handle($_SERVER['REQUEST_URI']);
