@@ -4,7 +4,8 @@
     "type": "project",
     "require": {
         "php": ">=8.2",
-        "smarty/smarty": "^5.8"
+        "smarty/smarty": "^5.8",
+        "scssphp/scssphp": "^2.1.0"
     },
     "config": {
         "platform": {
