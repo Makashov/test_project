@@ -4,11 +4,12 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: test_project_php
-    command: sh -c "composer install --no-interaction --no-progress && php-fpm"
+    command: sh -c "composer install --no-interaction --no-progress && php app/commands/db_seeder.php && php-fpm"
     volumes:
       - ./:/var/www
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     networks:
       - appnet
 
@@ -38,6 +39,12 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       - ./db:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
     networks:
       - appnet
 

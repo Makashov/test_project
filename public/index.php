@@ -14,4 +14,4 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $router = new Router();
 
-echo $router->handle($_SERVER['REQUEST_URI']);
+$router->handle($_SERVER['REQUEST_URI']);
