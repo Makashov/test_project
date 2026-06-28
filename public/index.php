@@ -2,15 +2,18 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use App\Smarty\Smarty;
-use ScssPhp\ScssPhp\Compiler;
+load_env(__DIR__ . '/../.env');
 
-$compiler = new Compiler();
-$compiler->setImportPaths('../app/scss/');
+$_CONFIG = require __DIR__ . '/../config/config.php';
 
-$css = $compiler->compileString('@import "style.scss"')->getCss();
+use App\App;
+use App\Router;
 
-$smarty = new Smarty();
+$db = $_CONFIG['db'];
+$conn = new PDO("mysql:host={$db['host']}:{$db['port']};dbname={$db['database']}", $db['username'], $db['password']);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$smarty->assign('css', $css);
-$smarty->display('index.tpl');
+$app = new App();
+$router = new Router();
+
+echo $router->handle($_SERVER['REQUEST_URI']);
