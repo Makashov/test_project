@@ -67,3 +67,12 @@ if (! function_exists('env')) {
         };
     }
 }
+
+if (! function_exists('get_configs')) {
+    load_env(__DIR__ . '/../.env');
+
+    function get_configs()
+    {
+        return require __DIR__ . '/../config/config.php';
+    }
+}

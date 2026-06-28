@@ -8,16 +8,19 @@ class CategorySeeder extends Seeder
     {
         return [
             [
-                'name' => 'Shoes',
-                'description' => 'Description for shoes',
+                'id' => 1,
+                'name' => 'Sports',
+                'description' => 'Sport news',
             ],
             [
-                'name' => 'Pants',
-                'description' => 'Description for pants',
+                'id' => 2,
+                'name' => 'Finance',
+                'description' => 'Finance news',
             ],
             [
-                'name' => 'Shirts',
-                'description' => 'Description for shirts',
+                'id' => 3,
+                'name' => 'Politics',
+                'description' => 'All about politics',
             ]
         ];
     }

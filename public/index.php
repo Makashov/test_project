@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 load_env(__DIR__ . '/../.env');
 
-$_CONFIG = require __DIR__ . '/../config/config.php';
+$_CONFIG = get_configs();
 
 use App\App;
 use App\Router;
